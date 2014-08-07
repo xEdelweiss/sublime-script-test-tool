@@ -18,15 +18,15 @@ Build system cannot work with unsaved files. This plugin designed for easy testi
 * Copy the folder to your Sublime Text 3 'Packages' directory
 
 ### How to add new scope / interpreter / arguments list
-**Scope** is the Sublime Text scope. To get scope name press [Ctrl+Alt+Shift+P] _(default ST shortcut)_ — the status bar at the bottom of the screen will display a comprehensive list of all the scope keys that apply to the character immediately following your cursor position. You need the first one.
+**Scope** is the Sublime Text scope. To get scope name press ``[Ctrl+Alt+Shift+P]`` _(default ST shortcut)_ — the status bar at the bottom of the screen will display a comprehensive list of all the scope keys that apply to the character immediately following your cursor position. You need the first one.
 
-**Command** is the alias for arguments list (e.g., php, php-5.5, etc.)
+**Command** is the alias for arguments list (e.g., ``php``, ``php-5.5``, etc.)
 
-**Args** is a list of arguments to be called. Plugin will replace %file% item of args with the name of the tempfile your script will be saved to.
+**Args** is a list of arguments to be called. Plugin will replace ``%file%`` item of args with the name of the tempfile your script will be saved to.
 
 So, you have to:
 
-1. Add command_name:args to settigns.commands_args array
-2. Add scope_name:command_name to settigns.scopes_commands array
+1. Add ``command_name:args`` to ``settings.commands_args`` array
+2. Add ``scope_name:command_name`` to ``settings.scopes_commands`` array
 3. ...
 2. Profit!
