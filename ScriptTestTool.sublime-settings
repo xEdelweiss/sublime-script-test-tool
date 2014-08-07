@@ -1,0 +1,6 @@
+{
+    // by default assume that you have it in your PATH
+    "php_bin": "php",
+    "scroll_output_to_end": true,
+    "replace_win_eol_with_unix": true
+}
