@@ -22,6 +22,7 @@ Just create/open new tab, set correct syntax, write some code and **press F5** (
 **Args** is a list of arguments to be called. Plugin will replace %file% item of args with the name of the tempfile your script will be saved to.
 
 So, you have to:
+
 1. Add command_name:args to settigns.commands_args array
 2. Add scope_name:command_name to settigns.scopes_commands array
 3. ...
