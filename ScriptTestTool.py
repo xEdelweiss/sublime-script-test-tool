@@ -49,6 +49,7 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
 
     def start_output(self):
         self.output = sublime.active_window().create_output_panel('stt')
+        sublime.active_window().run_command("hide_panel", {"panel": "output.stt", "toggle": False})
         sublime.active_window().run_command("show_panel", {"panel": "output.stt", "toggle": False})
 
     def print_output(self, proc):
