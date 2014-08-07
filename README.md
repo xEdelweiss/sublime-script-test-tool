@@ -5,7 +5,7 @@ Sublime Text 3 plugin to execute the script **without saving the file**.
 Interpreter is chosen by scope at the cursor point. Tested only under Windows OS.
 
 ### Plug-and-play :)
-If you have your **PHP/Python/Ruby/Dart** binary in PATH, then no additional configuration required.
+If you have your **PHP/Python/Ruby/Dart/JavaScript** binary in PATH, then no additional configuration required.
 Just create/open new tab, set correct syntax, write some code and **press F5** (by default)
 
 ### What..? Why..? We have build systems!
