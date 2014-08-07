@@ -14,8 +14,8 @@ Build system cannot work with unsaved files. This plugin designed for easy testi
 ### Installation
 
 * Download the files using the GitHub .zip download option
-* Unzip the files and rename the folder to 'sublime-script-test-tool'
-* Copy the folder to your Sublime Text 3 'Packages' directory
+* Unzip the files and rename the folder to ``sublime-script-test-tool``
+* Copy the folder to your Sublime Text 3 ``Packages`` directory
 
 ### How to add new scope / interpreter / arguments list
 **Scope** is the Sublime Text scope. To get scope name press ``[Ctrl+Alt+Shift+P]`` _(default ST shortcut)_ — the status bar at the bottom of the screen will display a comprehensive list of all the scope keys that apply to the character immediately following your cursor position. You need the first one.
