@@ -84,3 +84,6 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
             output = output.replace('\r\n', '\n')
 
         self.print_message(output)
+
+# 06-07.08.2014
+# Слава Україні!
