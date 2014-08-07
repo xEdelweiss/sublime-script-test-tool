@@ -3,6 +3,7 @@ import sublime, sublime_plugin, subprocess, threading, base64, os, tempfile
 class RunScriptTestCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         self.settings = sublime.load_settings('ScriptTestTool.sublime-settings')
+
         script = self.get_raw_script()
         sublime.set_timeout_async(lambda: self.execute_script(script), 0)
 
@@ -19,6 +20,9 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
             temp_file.close()
 
             self.start_output()
+
+            print('ScriptTestTool: starting', self.get_proccess_args(temp_file.name))
+
             proc = subprocess.Popen(
                 self.get_proccess_args(temp_file.name),
                 stdout      = subprocess.PIPE,
@@ -28,14 +32,25 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
 
             self.print_communicate(proc)
 
-            self.print_message("\n\nProcess ended, return code: "+str(proc.returncode))
+            self.print_message("\n\nProcess ended, return code: {0}".format(proc.returncode))
 
+        except BaseException as err:
+            self.print_message("Error: {0}".format(err))
         finally:
             os.remove(temp_file.name)
 
     def get_proccess_args(self, file_name):
-        args = [self.get_setting('php_bin', 'php'), file_name]
-        return args
+        point = self.view.sel()[0]
+        scope = self.view.scope_name(point.a).split()[0]
+        command = self.get_setting('scopes_commands').get(scope) or self.get_setting('scopes_commands').get('default')
+        args = self.get_setting('commands_args').get(command)
+
+        if args == None:
+            return
+
+        result = [file_name if item == '%file%' else item for item in args]
+
+        return result
 
     def get_startup_info(self):
         startupinfo = None
@@ -52,12 +67,6 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
         sublime.active_window().run_command("hide_panel", {"panel": "output.stt", "toggle": False})
         sublime.active_window().run_command("show_panel", {"panel": "output.stt", "toggle": False})
 
-    def print_output(self, proc):
-        data = proc.stdout.readline().decode(encoding='UTF-8')
-        if (self.get_setting('replace_win_eol_with_unix', True)):
-            data = data.replace('\r\n', '\n')
-        self.print_message(data)
-
     def print_message(self, message):
         self.output.run_command('append', {'characters': message, 'force': True, 'scroll_to_end': self.get_setting('scroll_output_to_end', True)})
 
@@ -65,12 +74,13 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
         (results, errors) = proc.communicate()
 
         if errors != b'':
-            print(errors)
-            return
+            output = errors
+        else:
+            output = results
 
-        results = results.decode(encoding='UTF-8')
+        output = output.decode(encoding='UTF-8')
 
         if (self.get_setting('replace_win_eol_with_unix', True)):
-            results = results.replace('\r\n', '\n')
+            output = output.replace('\r\n', '\n')
 
-        self.print_message(results)
+        self.print_message(output)

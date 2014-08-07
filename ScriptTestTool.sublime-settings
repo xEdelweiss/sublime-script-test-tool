@@ -1,6 +1,19 @@
 {
-    // by default assume that you have it in your PATH
-    "php_bin": "php",
     "scroll_output_to_end": true,
-    "replace_win_eol_with_unix": true
+    "replace_win_eol_with_unix": true,
+
+    // by default assume that you have all binaries in your PATH
+    "commands_args": {
+        "python": ["python", "%file%"],
+        "dart": ["dart", "%file%"],
+        "ruby": ["ruby", "%file%"],
+        "php": ["php", "%file%"],
+    },
+
+    "scopes_commands": {
+        "source.python": "python",
+        "source.dart": "dart",
+        "source.ruby": "ruby",
+        "default": "php"
+    }
 }
