@@ -85,5 +85,4 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
 
         self.print_message(output)
 
-# 06-07.08.2014
 # Слава Україні!
