@@ -13,7 +13,7 @@ class RunScriptTestCommand(sublime_plugin.TextCommand):
         return content
 
     def execute_script(self, script):
-        temp_file = tempfile.NamedTemporaryFile(mode="w+", delete=False)
+        temp_file = tempfile.NamedTemporaryFile(mode="w+", delete=False, encoding="utf-8")
 
         try:
             temp_file.write(script)
